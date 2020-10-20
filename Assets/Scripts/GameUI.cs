@@ -13,7 +13,7 @@ public class GameUI : MonoBehaviour
 
     private void Update()
     {
-        goldText.text = "Gold: " + playerManager.gold + " (" + playerManager.goldPerSecond + ")"; ;
+        goldText.text = "Gold: " + playerManager.gold;
         pressesText.text = "Presses: " + playerManager.totalPresses;
 
         //button colors
