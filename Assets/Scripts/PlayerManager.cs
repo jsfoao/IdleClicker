@@ -5,14 +5,19 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [Header("Player")]
-    public int gold;
-    public int goldClick;
+    public float gold;
+    public float goldClick;
+    public float goldPerSecond;
 
     [Header("Press")]
-    public int totalPresses;
-    public int pressIncrease;
-    public int pressBuyPrice;
-    public int pressSellPrice;
+    public float totalPresses;
+    public float pressIncrease;
+    [SerializeField] float pressBuyPrice;
+    public float pressSellPrice;
+
+    [Header("Timer")]
+    public float delayAmount;
+    private float Timer;
 
     private void Update()
     {
@@ -21,29 +26,40 @@ public class PlayerManager : MonoBehaviour
             AddGold(goldClick);
         }
 
-        Debug.Log("Gold: " + gold);
-        //Debug.Log("Gold presses: " + totalPresses);
+        GoldPerSecond();
     }
 
-    public void AddGold(int _gold)
+    public void AddGold(float _gold)
     {
         this.gold += _gold;
     }
 
-    public void SubtractGold(int _gold)
+    public void SubtractGold(float _gold)
     {
         this.gold -= _gold;
     }
 
-    public void BuyPress(int _buyPrice)
+    public void BuyPress(float _buyPrice)
     {
         this.totalPresses++;
         SubtractGold(_buyPrice);
     }
 
-    public void Sell(int _sellPrice)
+    public void Sell(float _sellPrice)
     {
         this.totalPresses--;
         AddGold(_sellPrice);
+    }
+
+    private void GoldPerSecond()
+    {
+        goldPerSecond = pressIncrease * totalPresses;
+
+        Timer += Time.deltaTime;
+        if (Timer >= delayAmount)
+        {
+            Timer = 0f;
+            gold += goldPerSecond;
+        }
     }
 }
