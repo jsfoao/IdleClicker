@@ -12,11 +12,9 @@ public class PlayerManager : MonoBehaviour
     [Header("Press")]
     public float totalPresses;
     public float pressIncrease;
-    [SerializeField] float pressBuyPrice;
+    public float pressBuyPrice;
     public float pressSellPrice;
 
-    [Header("Timer")]
-    public float delayAmount;
     private float Timer;
 
     private void Update()
@@ -39,16 +37,26 @@ public class PlayerManager : MonoBehaviour
         this.gold -= _gold;
     }
 
-    public void BuyPress(float _buyPrice)
+    public void BuyPress()
     {
-        this.totalPresses++;
-        SubtractGold(_buyPrice);
+        if (this.gold >= pressBuyPrice)
+        {
+            this.totalPresses++;
+            SubtractGold(pressBuyPrice);
+        }
+        else
+            Debug.Log("not enough");
     }
 
-    public void Sell(float _sellPrice)
+    public void Sell()
     {
-        this.totalPresses--;
-        AddGold(_sellPrice);
+        if (totalPresses > 0)
+        {
+            this.totalPresses--;
+            AddGold(pressSellPrice);
+        }
+        else
+            Debug.Log("no presses to sell");
     }
 
     private void GoldPerSecond()
@@ -56,7 +64,7 @@ public class PlayerManager : MonoBehaviour
         goldPerSecond = pressIncrease * totalPresses;
 
         Timer += Time.deltaTime;
-        if (Timer >= delayAmount)
+        if (Timer >= 1f)
         {
             Timer = 0f;
             gold += goldPerSecond;
