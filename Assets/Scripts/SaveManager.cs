@@ -13,7 +13,7 @@ public class SaveManager : MonoBehaviour
     public void SaveGame()
 	{
 		PlayerPrefs.SetFloat("gold", playerManager.gold);
-		PlayerPrefs.SetFloat("presses", playerManager.totalPresses);
+		PlayerPrefs.SetFloat("items", playerManager.items[0].total);
 		PlayerPrefs.Save();
 		Debug.Log("Game data saved!");
 	}
@@ -23,7 +23,7 @@ public class SaveManager : MonoBehaviour
 		if (PlayerPrefs.HasKey("gold") && PlayerPrefs.HasKey("presses"))
 		{
 			playerManager.gold = PlayerPrefs.GetFloat("gold");
-			playerManager.totalPresses = PlayerPrefs.GetFloat("presses");
+			playerManager.items[0].total = PlayerPrefs.GetFloat("presses");
 			Debug.Log("Game data loaded!");
 		}
 		else
@@ -34,7 +34,7 @@ public class SaveManager : MonoBehaviour
 	{
 		PlayerPrefs.DeleteAll();
 		playerManager.gold = 0f;
-		playerManager.totalPresses = 0f;
+		playerManager.items[0].total = 0f;
 		Debug.Log("Data reset complete");
 	}
 }

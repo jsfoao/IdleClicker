@@ -7,13 +7,6 @@ public class PlayerManager : MonoBehaviour
     [Header("Player")]
     public float gold;
     public float goldClick;
-    public float goldPerSecond;
-
-    [Header("Press")]
-    public float totalPresses;
-    public float pressIncrease;
-    public float pressBuyPrice;
-    public float pressSellPrice;
 
     public Item[] items;
     private float Timer;
@@ -25,7 +18,7 @@ public class PlayerManager : MonoBehaviour
             AddGold(goldClick);
         }
 
-        Debug.Log(TotalGoldProd());
+        GoldPerSecond();
     }
 
     public void AddGold(float _gold)
@@ -49,15 +42,20 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("not enough");
     }
 
-    public float TotalGoldProd()
+    public void BuyItemButton(int x)
+    {
+        BuyItem(items[x]);
+    }
+
+    private float TotalGoldProd()
     {
         float totalProdAmount = 0;
         float totalItems = 0;
         float totalGold;
 
-        for(int i = 0; i <= items.Length; i++)
+        for(int i = 0; i < items.Length; i++)
         {
-            totalProdAmount += items[i].total;
+            totalProdAmount += items[i].prodAmount;
             totalItems += items[i].total;
         }
 
