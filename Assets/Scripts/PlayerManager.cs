@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
         float totalGold = 0;
         totalGold = _item.prodAmount * _item.total;
 
-        if (_item.total == 0)
+        if (_item.total <= 0)
             return;
 
         _item.timer += Time.deltaTime;
@@ -65,16 +65,3 @@ public class PlayerManager : MonoBehaviour
         BuyItem(items[x]);
     }
 }
-
-/*
- * To 14: Create a class named PurchasableProduct. It does not inherit from MonoBehaviour. Use the [System.Serializable]-Attribute. If you now create a public PurchasableProduct[] purchasableProducts; you can configure everything in the inspector.
-
- * To 15: We will have to instantiate buttons depending on the configuration here. Useful methods and classes: 
-     var newGameObject = Object.Instantiate(gameObject)->creates a copy of the given GameObject. You could pass a 
-    reference to a prefab to this function by using a public field of type GameObject and then referencing the Prefab in the Unity Editor.
-
-     I would create a script named PurchasableProductView to put on that gameObject. 
-    So you can reference all Texts using public fields. public Text costText;public Text productName; etc.
-     Var view = newGameObject.GetComponent<PurchasableProductView>()->will then give you your view.
-     VerticalLayoutGroup -> It is a component from Unity that helps you layout multiple UI Elements above each other automatically. 
-     You can set up the width and height of each button here.*/

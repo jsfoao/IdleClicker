@@ -412,16 +412,18 @@ MonoBehaviour:
   gold: 0
   goldClick: 5
   items:
-  - itemName: Press
+  - name: Press
     cost: 100
     prodTime: 1
     prodAmount: 2
     total: 0
-  - itemName: Factory
+    timer: 0
+  - name: Factory
     cost: 300
-    prodTime: 1
+    prodTime: 3
     prodAmount: 10
     total: 0
+    timer: 0
 --- !u!4 &380678779
 Transform:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Item
 {
-    public string itemName;
+    public string name;
     public float cost;
     public float prodTime;
     public float prodAmount;
@@ -14,7 +14,7 @@ public class Item
 
     public Item(string _name, float _cost, float _prodTime, float _prodAmount)
     {
-        this.itemName = _name;
+        this.name = _name;
         this.cost = _cost;
         this.prodTime = _prodTime;
         this.prodAmount = _prodAmount;

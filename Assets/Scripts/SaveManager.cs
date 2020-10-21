@@ -4,37 +4,51 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-	public PlayerManager playerManager;
+	private PlayerManager playerManager;
 
     private void Start()
     {
 		playerManager = GetComponent<PlayerManager>();
     }
+
     public void SaveGame()
 	{
+		//save player gold
 		PlayerPrefs.SetFloat("gold", playerManager.gold);
-		PlayerPrefs.SetFloat("items", playerManager.items[0].total);
+
+		//save player total items
+		for(int i = 0; i < playerManager.items.Length; i++)
+		{
+			PlayerPrefs.SetFloat(playerManager.items[i].name, playerManager.items[i].total);
+		}
+
 		PlayerPrefs.Save();
 		Debug.Log("Game data saved!");
 	}
 
 	public void LoadGame()
 	{
-		if (PlayerPrefs.HasKey("gold") && PlayerPrefs.HasKey("presses"))
+		//load player gold
+		playerManager.gold = PlayerPrefs.GetFloat("gold");
+
+		//load player total items
+		for (int i = 0; i < playerManager.items.Length; i++)
 		{
-			playerManager.gold = PlayerPrefs.GetFloat("gold");
-			playerManager.items[0].total = PlayerPrefs.GetFloat("presses");
-			Debug.Log("Game data loaded!");
+			PlayerPrefs.GetFloat(playerManager.items[i].name, playerManager.items[i].total);
 		}
-		else
-			Debug.LogError("There is no save data!");
+
+		Debug.Log("Game data loaded!");
 	}
 
 	public void ResetData()
 	{
 		PlayerPrefs.DeleteAll();
 		playerManager.gold = 0f;
-		playerManager.items[0].total = 0f;
+
+		for (int i = 0; i < playerManager.items.Length; i++)
+		{
+			playerManager.items[i].total = 0f;
+		}
 		Debug.Log("Data reset complete");
 	}
 }

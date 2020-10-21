@@ -16,12 +16,13 @@ public class ItemUI : MonoBehaviour
         button = GetComponentInParent<Button>();
         buttonText = GetComponent<Text>();
         item = playerManager.items[index];
-        buttonText.text = item.itemName + ": " + item.cost.ToString();
     }
 
     private void Update()
     {
-        if(item.cost < playerManager.gold)
+        buttonText.text = item.name + "(" + item.total.ToString() + ")" + ": " + item.cost.ToString();
+
+        if (item.cost < playerManager.gold)
         {
             ChangeButtonColor(button, Color.green);
         }
