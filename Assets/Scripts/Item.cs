@@ -10,6 +10,7 @@ public class Item
     public float prodTime;
     public float prodAmount;
     public float total;
+    public float timer;
 
     public Item(string _name, float _cost, float _prodTime, float _prodAmount)
     {
@@ -19,3 +20,4 @@ public class Item
         this.prodAmount = _prodAmount;
     }
 }
+

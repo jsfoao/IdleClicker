@@ -7,11 +7,28 @@ public class ItemUI : MonoBehaviour
 {
     public PlayerManager playerManager;
     private Text buttonText;
+    private Button button;
     public int index;
+    private Item item;
+
     private void Start()
     {
+        button = GetComponentInParent<Button>();
         buttonText = GetComponent<Text>();
-        buttonText.text = playerManager.items[index].itemName + ": " + playerManager.items[index].cost.ToString();
+        item = playerManager.items[index];
+        buttonText.text = item.itemName + ": " + item.cost.ToString();
+    }
+
+    private void Update()
+    {
+        if(item.cost < playerManager.gold)
+        {
+            ChangeButtonColor(button, Color.green);
+        }
+        else
+        {
+            ChangeButtonColor(button, Color.red);
+        }
     }
 
     private void ChangeButtonColor(Button _button, Color _newcolor)
