@@ -7,8 +7,6 @@ public class GameUI : MonoBehaviour
 {
     public PlayerManager playerManager;
     public Text goldText;
-    public Text pressesText;
-    public Text factoryText;
 
     private void Update()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-	private PlayerManager playerManager;
+	/*private PlayerManager playerManager;
 
     private void Start()
     {
@@ -50,5 +50,5 @@ public class SaveManager : MonoBehaviour
 			playerManager.items[i].total = 0f;
 		}
 		Debug.Log("Data reset complete");
-	}
+	}*/
 }

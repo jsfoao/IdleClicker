@@ -6,29 +6,26 @@ using UnityEngine.UI;
 public class ItemUI : MonoBehaviour
 {
     public PlayerManager playerManager;
-    private Text buttonText;
-    private Button button;
-    public int index;
-    private Item item;
+    private ItemView itemView;
+    public Text ItemText;
+    public Button buyButton;
 
     private void Start()
     {
-        button = GetComponentInParent<Button>();
-        buttonText = GetComponent<Text>();
-        item = playerManager.items[index];
+        itemView = GetComponent<ItemView>();
     }
 
     private void Update()
     {
-        buttonText.text = item.name + "(" + item.total.ToString() + ")" + ": " + item.cost.ToString();
+        ItemText.text = itemView.item.name + "(" + itemView.item.total.ToString() + ")" + ": " + itemView.item.cost.ToString();
 
-        if (item.cost < playerManager.gold)
+        if (itemView.item.cost < playerManager.gold)
         {
-            ChangeButtonColor(button, Color.green);
+            ChangeButtonColor(buyButton, Color.green);
         }
         else
         {
-            ChangeButtonColor(button, Color.red);
+            ChangeButtonColor(buyButton, Color.red);
         }
     }
 
