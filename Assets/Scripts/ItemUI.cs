@@ -8,7 +8,15 @@ public class ItemUI : MonoBehaviour
     public PlayerManager playerManager;
     private ItemView itemView;
     public Text ItemText;
+
     public Button buyButton;
+    [SerializeField] Color buttonColorEnable;
+    [SerializeField] Color buttonColorDisable;
+
+    public GameObject floatTextPrefab;
+    public Transform floatTextSpawn;
+    [SerializeField] float destroyTime;
+    private GameObject floatTextPrefabInstance;
 
     private void Start()
     {
@@ -17,22 +25,45 @@ public class ItemUI : MonoBehaviour
 
     private void Update()
     {
-        ItemText.text = itemView.item.name + "(" + itemView.item.total.ToString() + ")" + ": " + itemView.item.cost.ToString();
+        //setting item text
+        ItemText.text = itemView.item.name + " (" + itemView.item.total.ToString() + ")";
 
+        if (itemView.item.reset) 
+        {
+            ShowFloatText(floatTextPrefab, floatTextSpawn);
+        }
+
+        //buy button
+        //setting button text
+        SetButtonText(buyButton, "Buy (" + itemView.item.cost.ToString() + ")");
+
+        // setting button text color
         if (itemView.item.cost < playerManager.gold)
         {
-            ChangeButtonColor(buyButton, Color.green);
+            SetButtonColor(buyButton, buttonColorDisable);
         }
         else
         {
-            ChangeButtonColor(buyButton, Color.red);
+            SetButtonColor(buyButton, buttonColorEnable);
         }
     }
 
-    private void ChangeButtonColor(Button _button, Color _newcolor)
+    private void SetButtonText(Button _button, string _newText)
     {
-        ColorBlock colors = _button.colors;
-        colors.normalColor = _newcolor;
-        _button.colors = colors;
+        Text buttonText = _button.GetComponentInChildren<Text>();
+        buttonText.text = _newText;
+    }
+
+    private void SetButtonColor(Button _button, Color _newcolor)
+    {
+        Text text = _button.GetComponentInChildren<Text>();
+        text.color = _newcolor;
+    }
+
+    public void ShowFloatText(GameObject _textPrefab, Transform _spawnPos)
+    {
+        floatTextPrefabInstance = Instantiate(_textPrefab, _spawnPos);
+        floatTextPrefabInstance.GetComponent<Text>().text = "+" + itemView.item.totalGold.ToString();
+        Destroy(floatTextPrefabInstance, destroyTime);
     }
 }

@@ -10,7 +10,9 @@ public class Item
     public float prodTime;
     public float prodAmount;
     public float total;
+    public float totalGold;
     public float timer;
+    public bool reset;
 
     public Item(string _name, float _cost, float _prodTime, float _prodAmount)
     {
@@ -33,8 +35,8 @@ public class Item
 
     public static void TotalGoldItemPerTime(Item _item, PlayerManager _playerManager)
     {
-        float totalGold = 0;
-        totalGold = _item.prodAmount * _item.total;
+        _item.totalGold = 0;
+        _item.totalGold = _item.prodAmount * _item.total;
 
         if (_item.total <= 0)
             return;
@@ -42,9 +44,12 @@ public class Item
         _item.timer += Time.deltaTime;
         if (_item.timer >= _item.prodTime)
         {
+            _item.reset = true;
             _item.timer = 0;
-            _playerManager.AddGold(totalGold);
+            _playerManager.AddGold(_item.totalGold);
         }
+        else
+            _item.reset = false;
     }
 }
 
