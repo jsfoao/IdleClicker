@@ -5,12 +5,16 @@ using UnityEngine;
 [System.Serializable]
 public class Item
 {
+    //attributes
     public string name;
     public float cost;
     public float prodTime;
     public float prodAmount;
     public float total;
     public float totalGold;
+    private float buyIncrease;
+
+    //timer
     public float timer;
     public bool reset;
 
@@ -24,10 +28,12 @@ public class Item
 
     public static void BuyItem(Item _item, PlayerManager _playerManager)
     {
+        _item.buyIncrease = 1.1f;
         if (_playerManager.gold >= _item.cost)
         {
             _item.total++;
             _playerManager.SubtractGold(_item.cost);
+            _item.cost = Mathf.Round(_item.cost * _item.buyIncrease);
         }
         else
             Debug.Log("not enough");
@@ -52,4 +58,3 @@ public class Item
             _item.reset = false;
     }
 }
-
