@@ -62,6 +62,7 @@ MonoBehaviour:
     prodAmount: 5
     total: 0
     totalGold: 0
+    upgradeCost: 20
     timer: 0
     reset: 0
 --- !u!114 &8773055375023831670
@@ -79,6 +80,7 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   ItemText: {fileID: 3671379527251744147}
   buyButton: {fileID: 7941360655820805401}
+  upgradeButton: {fileID: 7002421673296920743}
   buttonColorEnable: {r: 0.5943396, g: 0, b: 0, a: 1}
   buttonColorDisable: {r: 0, g: 0.4811321, b: 0.03884923, a: 1}
   floatTextPrefab: {fileID: 3500721056063069054, guid: ef5b5e1f3b2afa14791eaa005076d5e2, type: 3}
@@ -229,8 +231,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 85.76, y: -70.841}
-  m_SizeDelta: {x: 35.052498, y: 24.150795}
+  m_AnchoredPosition: {x: 78.59, y: -70.841}
+  m_SizeDelta: {x: 55.852135, y: 24.150795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6875933304420897194
 CanvasRenderer:
@@ -312,7 +314,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8928664295428346126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8773055375023831669}
+        m_TargetAssemblyTypeName: ItemView, Assembly-CSharp
+        m_MethodName: UpgradeItemButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5536596183361589845
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,8 +517,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 29.8, y: -70.84}
-  m_SizeDelta: {x: 67.60261, y: 24.150795}
+  m_AnchoredPosition: {x: 21.76, y: -70.84}
+  m_SizeDelta: {x: 57.822906, y: 24.150795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5001306777439060531
 CanvasRenderer:
@@ -677,4 +691,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Up
+  m_Text: Up (00)

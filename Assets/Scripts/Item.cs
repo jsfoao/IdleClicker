@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 [System.Serializable]
 public class Item
 {
-    //attributes
+    //attributes item
     public string name;
     public float cost;
     public float prodTime;
     public float prodAmount;
     public float total;
     public float totalGold;
-    private float buyIncrease;
+
+    //attributes upgrade
+    public float upgradeCost;
 
     //timer
     public float timer;
@@ -28,12 +31,13 @@ public class Item
 
     public static void BuyItem(Item _item, PlayerManager _playerManager)
     {
-        _item.buyIncrease = 1.1f;
+        float buyIncrease = 1.1f;
+
         if (_playerManager.gold >= _item.cost)
         {
             _item.total++;
             _playerManager.SubtractGold(_item.cost);
-            _item.cost = Mathf.Round(_item.cost * _item.buyIncrease);
+            _item.cost = Mathf.Round(_item.cost * buyIncrease);
         }
         else
             Debug.Log("not enough");
@@ -56,5 +60,17 @@ public class Item
         }
         else
             _item.reset = false;
+    }
+
+    public static void UpgradeItem(Item _item, PlayerManager _playerManager)
+    {
+        float upgradeIncrease = 1.05f;
+        if (_playerManager.gold >= _item.upgradeCost)
+        {
+            _playerManager.SubtractGold(_item.upgradeCost);
+            _item.prodAmount = _item.prodAmount * upgradeIncrease;
+        }
+        else
+            Debug.Log("not enough");
     }
 }

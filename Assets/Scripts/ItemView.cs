@@ -17,6 +17,11 @@ public class ItemView : MonoBehaviour
         Item.BuyItem(item, playerManager);
     }
 
+    public void UpgradeItemButton()
+    {
+        Item.UpgradeItem(item, playerManager);
+    }
+
     // changes object name in editor
     private void OnValidate()
     {

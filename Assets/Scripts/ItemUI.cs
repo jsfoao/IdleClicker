@@ -10,6 +10,7 @@ public class ItemUI : MonoBehaviour
     public Text ItemText;
 
     public Button buyButton;
+    public Button upgradeButton;
     [SerializeField] Color buttonColorEnable;
     [SerializeField] Color buttonColorDisable;
 
@@ -36,16 +37,18 @@ public class ItemUI : MonoBehaviour
         //buy button
         //setting button text
         SetButtonText(buyButton, "Buy (" + itemView.item.cost.ToString() + ")");
+        SetButtonText(upgradeButton, "Up (" + itemView.item.upgradeCost.ToString() + ")");
 
         // setting button text color
         if (itemView.item.cost < playerManager.gold)
-        {
             SetButtonColor(buyButton, buttonColorDisable);
-        }
         else
-        {
             SetButtonColor(buyButton, buttonColorEnable);
-        }
+
+        if (itemView.item.upgradeCost < playerManager.gold)
+            SetButtonColor(upgradeButton, buttonColorDisable);
+        else
+            SetButtonColor(upgradeButton, buttonColorEnable);
     }
 
     private void SetButtonText(Button _button, string _newText)
@@ -66,4 +69,5 @@ public class ItemUI : MonoBehaviour
         floatTextPrefabInstance.GetComponent<Text>().text = "+" + itemView.item.totalGold.ToString();
         Destroy(floatTextPrefabInstance, destroyTime);
     }
+
 }
