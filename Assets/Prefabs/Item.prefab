@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673c091980ccb8f46840ec2fd12a3321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 0}
+  player: {fileID: 9151433131773821544, guid: a873aff22ef1c27408dffb3ce88cb5f5, type: 3}
   item:
     name: Press
     cost: 100
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf198058c72974a8ed2b7c15d1cabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 0}
+  player: {fileID: 9151433131773821544, guid: a873aff22ef1c27408dffb3ce88cb5f5, type: 3}
   ItemText: {fileID: 3671379527251744147}
   buyButton: {fileID: 7941360655820805401}
   upgradeButton: {fileID: 7002421673296920743}

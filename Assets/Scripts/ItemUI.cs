@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ItemUI : MonoBehaviour
 {
-    public PlayerManager playerManager;
+    public Player player;
     private ItemView itemView;
     public Text ItemText;
 
@@ -40,12 +40,12 @@ public class ItemUI : MonoBehaviour
         SetButtonText(upgradeButton, "Up (" + itemView.item.upgradeCost.ToString() + ")");
 
         // setting button text color
-        if (itemView.item.cost < playerManager.gold)
+        if (itemView.item.cost < player.gold)
             SetButtonColor(buyButton, buttonColorDisable);
         else
             SetButtonColor(buyButton, buttonColorEnable);
 
-        if (itemView.item.upgradeCost < playerManager.gold)
+        if (itemView.item.upgradeCost < player.gold)
             SetButtonColor(upgradeButton, buttonColorDisable);
         else
             SetButtonColor(upgradeButton, buttonColorEnable);

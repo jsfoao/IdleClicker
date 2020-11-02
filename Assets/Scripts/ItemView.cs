@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class ItemView : MonoBehaviour
 {
-    public PlayerManager playerManager;
+    public Player player;
     public Item item;
 
     private void Update()
     {
-        Item.TotalGoldItemPerTime(item, playerManager);
+        Item.TotalGoldItemPerTime(item, player);
     }
 
     public void BuyItemButton()
     {
-        Item.BuyItem(item, playerManager);
+        Item.BuyItem(item, player);
     }
 
     public void UpgradeItemButton()
     {
-        Item.UpgradeItem(item, playerManager);
+        Item.UpgradeItem(item, player);
     }
 
     // changes object name in editor

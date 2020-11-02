@@ -29,21 +29,21 @@ public class Item
         this.prodAmount = _prodAmount;
     }
 
-    public static void BuyItem(Item _item, PlayerManager _playerManager)
+    public static void BuyItem(Item _item, Player _player)
     {
         float buyIncrease = 1.1f;
 
-        if (_playerManager.gold >= _item.cost)
+        if (_player.gold >= _item.cost)
         {
             _item.total++;
-            _playerManager.SubtractGold(_item.cost);
+            _player.SubtractGold(_item.cost);
             _item.cost = Mathf.Round(_item.cost * buyIncrease);
         }
         else
             Debug.Log("not enough");
     }
 
-    public static void TotalGoldItemPerTime(Item _item, PlayerManager _playerManager)
+    public static void TotalGoldItemPerTime(Item _item, Player _player)
     {
         _item.totalGold = 0;
         _item.totalGold = _item.prodAmount * _item.total;
@@ -56,19 +56,19 @@ public class Item
         {
             _item.reset = true;
             _item.timer = 0;
-            _playerManager.AddGold(_item.totalGold);
+            _player.AddGold(_item.totalGold);
         }
         else
             _item.reset = false;
     }
 
-    public static void UpgradeItem(Item _item, PlayerManager _playerManager)
+    public static void UpgradeItem(Item _item, Player _player)
     {
         float upgradeIncrease = 1.05f;
-        if (_playerManager.gold >= _item.upgradeCost)
+        if (_player.gold >= _item.upgradeCost)
         {
-            _playerManager.SubtractGold(_item.upgradeCost);
-            _item.prodAmount = _item.prodAmount * upgradeIncrease;
+            _player.SubtractGold(_item.upgradeCost);
+            _item.prodAmount = Mathf.Round(_item.prodAmount * upgradeIncrease);
         }
         else
             Debug.Log("not enough");

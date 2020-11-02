@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    public PlayerManager playerManager;
+    public Player player;
     public Text goldText;
     public GameObject itemFloatTextPrefab;
 
     private void Update()
     {
-        goldText.text = "Gold: " + playerManager.gold;
+        goldText.text = "Gold: " + player.gold;
     }
 }
