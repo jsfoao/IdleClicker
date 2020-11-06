@@ -48,4 +48,8 @@ MonoBehaviour:
     attackRate: 0
     attackDmg: 0
     health: 0
+    currentHealth: 0
     loot: 0
+    spawned: 0
+    timer: 0
+    reset: 0

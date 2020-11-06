@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float attackRate = 0.6f;
     public float attackDmg = 5f;
     public float health = 100f;
+    public float currentHealth;
 
     public GameObject enemyObject;
     private EnemyView enemyView;
@@ -25,6 +26,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(this.currentHealth <= 0)
+        {
+            this.currentHealth = 0;
+            Debug.Log("game over");
+        }
+
         //damage on enemy
         DmgPerTime(this, enemyView);
 
@@ -56,7 +63,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-        this.health -= _damage;
+        if(this.currentHealth > 0)
+            this.currentHealth -= _damage;
     }
 
     public void DmgPerTime(Player _player, EnemyView _enemyView)
@@ -70,5 +78,42 @@ public class Player : MonoBehaviour
         }
         else
             _player.reset = false;
+    }
+
+    public void UpgradeHealth(Player _player)
+    {
+        float healthCost = 50f;
+        float healthIncrease = 1.10f;
+        if (_player.gold >= healthCost)
+        {
+            _player.health = _player.health * healthIncrease;
+            _player.currentHealth = _player.currentHealth * healthIncrease;
+            this.SubtractGold(healthCost);
+        }
+        else
+            Debug.Log("not enough gold to upgrade health");
+    }
+
+    public void UpgradeAttack(Player _player)
+    {
+        float attackCost = 50f;
+        float attackIncrease = 1.10f;
+        if (_player.gold >= attackCost)
+        {
+            _player.attackDmg = _player.attackDmg * attackIncrease;
+            this.SubtractGold(attackCost);
+        }
+        else
+            Debug.Log("not enough gold to upgrade attack dmg");
+    }
+
+    public void UpgradeHealthButton()
+    {
+        UpgradeHealth(this);
+    }
+
+    public void UpgradeAttackButton()
+    {
+        UpgradeAttack(this);
     }
 }

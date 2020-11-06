@@ -25,7 +25,6 @@ public class Enemy
         this.health = _health;
         this.loot = _loot;
         this.spawned = _spawned;
-
         this.currentHealth = this.health;
     }
 

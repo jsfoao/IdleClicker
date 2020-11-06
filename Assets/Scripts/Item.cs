@@ -67,8 +67,13 @@ public class Item
         float upgradeIncrease = 1.05f;
         if (_player.gold >= _item.upgradeCost)
         {
-            _player.SubtractGold(_item.upgradeCost);
-            _item.prodAmount = Mathf.Round(_item.prodAmount * upgradeIncrease);
+            if (_item.total > 0)
+            {
+                _player.SubtractGold(_item.upgradeCost);
+                _item.prodAmount = Mathf.Round(_item.prodAmount * upgradeIncrease * 100f) / 100f;
+            }
+            else
+                Debug.Log("no items to upgrade");
         }
         else
             Debug.Log("not enough");
